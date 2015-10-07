@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DadosBase>
+	<estados>
+		<estado>
+			<id>1</id>
+			<nome>São Paulo</nome>
+			<sigla>SP</sigla>
+		</estado>
+	</estados>
+	<municipios>
+		<municipio>
+			<id>1</id>
+			<nome>São José dos Campos</nome>
+			<estado>
+				<id>1</id>
+			</estado>
+		</municipio>
+	</municipios>
+	<delegacias>
+		<delegacia>
+			<id>1</id>
+			<nome>1ª Delegacia de Polícia</nome>
+			<nomeSSP>Delegacia 01 DP</nomeSSP>
+			<endereco>Rua Humaitá, 6 - Centro</endereco>
+			<telefone>+55 12 3921-2155</telefone>
+			<municipio>
+				<id>1</id>
+			</municipio>
+		</delegacia>
+		<delegacia>
+			<id>2</id>
+			<nome>2ª Delegacia de Polícia</nome>
+			<nomeSSP>Delegacia 02 DP</nomeSSP>
+			<endereco>Jd. Paulista</endereco>
+			<telefone>+55 12 3921-2112</telefone>
+			<municipio>
+				<id>1</id>
+			</municipio>
+		</delegacia>
+		<delegacia>
+			<id>3</id>
+			<nome>3ª Delegacia de Polícia</nome>
+			<nomeSSP>Delegacia 03 DP</nomeSSP>
+			<endereco>R José Cobra, 1200 - Conjunto Residencial Trinta E Um de Marco</endereco>
+			<telefone>+55 12 3931-2578</telefone>
+			<municipio>
+				<id>1</id>
+			</municipio>
+		</delegacia>
+		<delegacia>
+			<id>4</id>
+			<nome>4ª Delegacia de Polícia</nome>
+			<nomeSSP>Delegacia 04 DP</nomeSSP>
+			<endereco>R. Carlos Belmiro dos Santos, 443 - Santana</endereco>
+			<telefone>+55 12 3943-2040</telefone>
+			<municipio>
+				<id>1</id>
+			</municipio>
+		</delegacia>
+		<delegacia>
+			<id>5</id>
+			<nome>5ª Delegacia de Polícia</nome>
+			<nomeSSP>Delegacia 05 DP</nomeSSP>
+			<endereco>Vila Tesouro</endereco>
+			<telefone>+55 12 3912-1816</telefone>
+			<municipio>
+				<id>1</id>
+			</municipio>
+		</delegacia>
+		<delegacia>
+			<id>6</id>
+			<nome>6ª Delegacia de Polícia</nome>
+			<nomeSSP>Delegacia 06 DP</nomeSSP>
+			<endereco>Vista Verde</endereco>
+			<telefone>+55 12 3912-1817</telefone>
+			<municipio>
+				<id>1</id>
+			</municipio>
+		</delegacia>
+		<delegacia>
+			<id>7</id>
+			<nome>7ª Delegacia de Polícia</nome>
+			<nomeSSP>Delegacia 07 DP</nomeSSP>
+			<endereco>Bosque dos Eucalíptos</endereco>
+			<telefone>+55 12 3916-5750</telefone>
+			<municipio>
+				<id>1</id>
+			</municipio>
+		</delegacia>
+		<delegacia>
+			<id>8</id>
+			<nome>8ª Delegacia de Polícia</nome>
+			<nomeSSP>Delegacia 08 DP</nomeSSP>
+			<endereco>Jd. das Indústrias</endereco>
+			<telefone>+55 12 3931-9314</telefone>
+			<municipio>
+				<id>1</id>
+			</municipio>
+		</delegacia>
+		<delegacia>
+			<id>9</id>
+			<nome>Delegacia Defesa da Mulher</nome>
+			<nomeSSP>Delegacia DDM</nomeSSP>
+			<!-- endereço pego na internet (Google Maps) -->
+			<endereco>Avenida Comendador de Vicente Paula Penido, 224 - Parque Residencial Aquarius</endereco>
+			<telefone>+55 12 3941-4140</telefone>
+			<municipio>
+				<id>1</id>
+			</municipio>
+		</delegacia>
+		<delegacia>
+			<id>10</id>
+			<nome>Delegacia da Infância e Juventude</nome>
+			<nomeSSP>Delegacia DIJU</nomeSSP>
+			<!-- endereço pego na internet (Google Maps) -->
+			<endereco>Centro</endereco>
+			<telefone>+55 12 3921-2693</telefone>
+			<municipio>
+				<id>1</id>
+			</municipio>
+		</delegacia>
+		<delegacia>
+			<id>11</id>
+			<nome>DISE - Delegacia de Investigações Sobre Entorpecentes</nome>
+			<nomeSSP>Delegacia DISE</nomeSSP>
+			<municipio>
+				<id>1</id>
+			</municipio>
+		</delegacia>
+		<delegacia>
+			<id>12</id>
+			<nome>DIG - Delegacia Investigações Gerais</nome>
+			<nomeSSP>Delegacia DIG</nomeSSP>
+			<municipio>
+				<id>1</id>
+			</municipio>
+		</delegacia>
+		<!-- Removendo essas delegacias como não temos ocorrências para a cidade 
+			de SJC (o arquivo não tem nome da cidade) <delegacia> <id>13</id> <nomeSSP>Delegacia 
+			DELPOL de proteção ao Idoso</nomeSSP> <municipio> <id>1</id> <nome>São José 
+			dos Campos</nome> <estado> <id>1</id> <nome>São Paulo</nome> <sigla>SP</sigla> 
+			</estado> </municipio> </delegacia> <delegacia> <id>14</id> <nomeSSP>Delegacia 
+			OUTRAS ESPECIALIZADAS</nomeSSP> <municipio> <id>1</id> <nome>São José dos 
+			Campos</nome> <estado> <id>1</id> <nome>São Paulo</nome> <sigla>SP</sigla> 
+			</estado> </municipio> </delegacia> -->
+	</delegacias>
+	<naturezas>
+		<natureza>
+			<id>1</id>
+			<nome>HOMICÍDIO DOLOSO (2)</nome>
+			<observacao>Homicídio Doloso inclui Homicídio Doloso por Acidente de Trânsito.</observacao>
+		</natureza>
+		<natureza>
+			<id>2</id>
+			<nome>Nº DE VÍTIMAS EM HOMICÍDIO DOLOSO (3)</nome>
+			<observacao>Nº de Vítimas de Homicídio Doloso inclui Nº de Vítimas de Homicídio Doloso por Acidente de Trânsito.</observacao>
+		</natureza>
+		<natureza>
+			<id>3</id>
+			<nome>HOMICÍDIO DOLOSO POR ACIDENTE DE TRÂNSITO</nome>
+		</natureza>
+		<natureza>
+			<id>4</id>
+			<nome>Nº DE VÍTIMAS EM HOMICÍDIO DOLOSO POR ACIDENTE DE TRÂNSITO</nome>
+		</natureza>
+		<natureza>
+			<id>5</id>
+			<nome>HOMICÍDIO CULPOSO POR ACIDENTE DE TRÂNSITO</nome>
+		</natureza>
+		<natureza>
+			<id>6</id>
+			<nome>HOMICÍDIO CULPOSO OUTROS</nome>
+		</natureza>
+		<natureza>
+			<id>7</id>
+			<nome>TENTATIVA DE HOMICÍDIO</nome>
+		</natureza>
+		<natureza>
+			<id>8</id>
+			<nome>LESÃO CORPORAL DOLOSA</nome>
+		</natureza>
+		<natureza>
+			<id>9</id>
+			<nome>LESÃO CORPORAL CULPOSA POR ACIDENTE DE TRÂNSITO</nome>
+		</natureza>
+		<natureza>
+			<id>10</id>
+			<nome>LESÃO CORPORAL CULPOSA - OUTRAS</nome>
+		</natureza>
+		<natureza>
+			<id>11</id>
+			<nome>LATROCÍNIO</nome>
+		</natureza>
+		<natureza>
+			<id>12</id>
+			<nome>Nº DE VÍTIMAS EM LATROCÍNIO</nome>
+		</natureza>
+		<natureza>
+			<id>13</id>
+			<nome>ESTUPRO</nome>
+		</natureza>
+		<natureza>
+			<id>14</id>
+			<nome>ROUBO - OUTROS (1)</nome>
+			<observacao>Incluído Roubo Carga e Banco.</observacao>
+		</natureza>
+		<natureza>
+			<id>15</id>
+			<nome>ROUBO DE VEÍCULO</nome>
+		</natureza>
+		<natureza>
+			<id>16</id>
+			<nome>ROUBO A BANCO</nome>
+		</natureza>
+		<natureza>
+			<id>17</id>
+			<nome>ROUBO DE CARGA</nome>
+		</natureza>
+		<natureza>
+			<id>18</id>
+			<nome>FURTO - OUTROS</nome>
+		</natureza>
+		<natureza>
+			<id>19</id>
+			<nome>FURTO DE VEÍCULO</nome>
+		</natureza>
+	</naturezas>
+</DadosBase>

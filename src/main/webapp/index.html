@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="pt-BR" ng-app="OcorrenciasSPApp">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description"
+	content="Ocorrências criminais das cidades do Estado de São Paulo">
+<meta name="author" content="Dados Abertos SJC">
+<link rel="icon" href="../../favicon.ico">
+
+<title>Ocorrências criminais das cidades do Estado de São Paulo</title>
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link href="css/scrolling-nav.css" rel="stylesheet">
+
+<style type="text/css">
+select {
+	min-width: 160px;
+}
+
+.glyphicon {
+	margin-right: 5px
+}
+</style>
+</head>
+
+<body ng-controller="OcorrenciasSPController" id="page-top"
+	data-spy="scroll" data-target=".navbar-fixed-top">
+
+	<!-- Navigation -->
+	<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+		<div class="container">
+			<div class="navbar-header page-scroll">
+				<button type="button" class="navbar-toggle" data-toggle="collapse"
+					data-target=".navbar-ex1-collapse">
+					<span class="sr-only">Toggle navigation</span> <span
+						class="icon-bar"></span> <span class="icon-bar"></span> <span
+						class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand page-scroll" href="#page-top">Segurança
+					SP</a>
+			</div>
+
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div class="collapse navbar-collapse navbar-ex1-collapse">
+				<ul class="nav navbar-nav">
+					<li><a class="page-scroll" href="#funcionamento"
+						ng-show="!ehCelular">Como Funciona?</a></li>
+					<li><a class="page-scroll" href="#sobre" ng-show="!ehCelular">Sobre</a></li>
+				</ul>
+			</div>
+			<!-- /.navbar-collapse -->
+		</div>
+		<!-- /.container -->
+	</nav>
+
+
+	<!-- Intro Section -->
+	<section id="intro" class="intro-section">
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-12">
+					<h2>Ocorrências criminais das cidades do Estado de São Paulo</h2>
+				</div>
+			</div>
+			<p class="lead">
+				Explore as ocorrências criminais das cidades do estado de São Paulo
+				usando os <a
+					href="http://www.ssp.sp.gov.br/novaestatistica/Pesquisa.aspx">dados
+					da Secretaria de Segurança de São Paulo</a>.
+			</p>
+
+			<div class="row">
+				<div class="panel panel-primary">
+					<div class="panel-heading">
+						<h3 class="panel-title">Parâmetros</h3>
+					</div>
+					<div class="panel-body">
+						<form class="form-inline">
+							<div class="input-group">
+								<span class="input-group-addon" id="municipioLbl">Município</span>
+								<select class="form-control" aria-describedby="municipioLbl"
+									ng-change="carregaDelegacias()" ng-disabled="!municipios"
+									ng-model="municipioSelecionado"
+									ng-options="m.nome for m in municipios">
+								</select>
+							</div>
+							<div class="input-group">
+								<button type="button" class="btn btn-default"
+									ng-class="{active: evolucao, notActive: !evolucao}"
+									ng-click="trocaEvolucao()">Evolução Anual</button>
+							</div>
+							<div class="input-group">
+								<span class="input-group-addon" id="anoLbl">Ano</span> <select
+									class="form-control" aria-describedby="anoLbl"
+									ng-disabled="!anos" ng-model="anoSelecionado"
+									ng-options="a for a in anos">
+								</select>
+							</div>
+							<div class="input-group">
+								<span class="input-group-addon" id="mesLbl">Mês</span> <select
+									class="form-control" aria-describedby="mesLbl"
+									ng-disabled="evolucao" ng-model="mesSelecionado"
+									ng-options="m for m in meses">
+								</select>
+							</div>
+							<div class="input-group">
+								<button type="button" class="btn btn-default btn-lg"
+									ng-click="carregaDados()">
+									<span class="glyphicon glyphicon-refresh"></span>Carregar
+								</button>
+							</div>
+							<br /> <br />
+							<div>
+								<!-- Nav tabs -->
+								<ul class="nav nav-tabs" role="tablist" id="abasBuscas">
+									<li role="presentation" class="active"><a
+										href="#porDelegacia" aria-controls="home" role="tab"
+										data-toggle="tab" id="buscaPorDelegacia">Por Delegacia</a></li>
+									<li role="presentation"><a href="#porNatureza"
+										aria-controls="profile" role="tab" data-toggle="tab"
+										id="buscaPorNatureza">Por Natureza</a></li>
+								</ul>
+
+								<!-- Tab panes -->
+								<div class="tab-content">
+									<div role="tabpanel" class="tab-pane active" id="porDelegacia">
+										<br />
+										<div class="input-group">
+											<span class="input-group-addon" id="municipioLbl">Delegacia</span>
+											<select class="form-control" aria-describedby="delegaciaLbl"
+												ng-disabled="!delegacias" ng-model="delegaciaSelecionada"
+												ng-options="d.nome for d in delegacias">
+											</select>
+										</div>
+
+									</div>
+									<div role="tabpanel" class="tab-pane" id="porNatureza">
+										<br />
+										<div class="input-group">
+											<span class="input-group-addon" id="naturezaLbl">Natureza</span>
+											<select class="form-control" aria-describedby="naturezaLbl"
+												ng-disabled="!naturezas" ng-model="naturezaSelecionada"
+												ng-options="n.nome for n in naturezas">
+											</select>
+										</div>
+									</div>
+								</div>
+							</div>
+							<br />
+						</form>
+						<div class="row">
+							<span class="label label-warning" style="font-size: 16px"
+								ng-show="carregando" id="lblCarregar">Carregando</span>
+							<div id="mapa"></div>
+							<br />
+							<div id="grafico"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</section>
+
+	<section id="funcionamento" class="funcionamento-section"
+		ng-show="!ehCelular">
+		<div class="container">
+			<div class="row" style="text-align: center">
+				<div class="col-lg-12">
+					<h1>Como Funciona?</h1>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-lg-12">
+					<h3>Para usuários</h3>
+					<p>O objetivo dessa aplicação é facilitar a exploração dos
+						dados das ocorrências policiais que aconteceram em São José dos
+						Campos de 2013 até 2015. Há duas formas de listar os dados: por
+						delegacia ou por natureza. Os dados podem ser exibidos para um mês
+						específico ou a evolução de um ano inteiro.</p>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12">
+					<h3>Programadores</h3>
+					<p>
+						O código está no <a
+							href="https://github.com/transparenciasjc/seguranca-sjc">github</a>!
+						Usamos Java EE: JAX-RS, JPA, CDI. No cliente angularJS, Highcharts
+						e Bootstrap. Os dados são mantidos em memória, nenhuma
+						configuração adicional é necessária. <br />Caso queria adaptar
+						essa página para a sua cidade do estado de São Paulo, por
+						gentileza, <a
+							href="https://www.facebook.com/pages/Dados-Abertos-SJC/436813019726917?ref=hl">entre
+							em contato</a> e iremos auxiliar nos passos necessários para
+						configurar a aplicação para as delegacias e dados da sua
+						cidade(infelizmente somente o estadoSão Paulo é suportado no
+						momento).<br />
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="sobre" class="sobre-section" ng-show="!ehCelular">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<h1>Sobre</h1>
+				</div>
+				<div class="">
+					<div class="col-lg-12">
+						<p>
+							<strong> Desenvolvido por <a
+								href="http://transparenciasjc.github.io/">Dados Abertos SJC</a>.
+								Curta nossa <a
+								href="https://www.facebook.com/pages/Dados-Abertos-SJC/436813019726917?ref=hl">página</a>.
+							</strong>
+						</p>
+						<img src="imagens/dados_abertos_sjc.jpg" />
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<footer class="footer">
+		<div class="container">
+			<p class="text-muted">
+				Por <a
+					href="https://www.facebook.com/pages/Dados-Abertos-SJC/436813019726917">Dados
+					Abertos SJC</a>
+			</p>
+		</div>
+	</footer>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.1/angular.min.js"></script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script
+		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<script src="js/jquery.easing.min.js"></script>
+	<script src="js/scrolling-nav.js"></script>
+
+	<script src="http://code.highcharts.com/highcharts.js"></script>
+	<script src="js/controllers.js"></script>
+</body>
+</html>
